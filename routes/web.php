@@ -19,3 +19,5 @@ Route::get('/', function () {
 
 Route::get('/email' , 'EmailController@create');
 Route::post('/email/send' , 'EmailController@send');
+
+Route::get('pay' , 'PayOrderController@store');
