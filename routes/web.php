@@ -17,7 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// send emails
 Route::get('/email' , 'EmailController@create');
 Route::post('/email/send' , 'EmailController@send');
-
+// Service container
 Route::get('pay' , 'PayOrderController@store');
+// View Composer
+Route::get('channels' ,'ChannelController@index');
+Route::get('post/create' , 'PostController@create');
