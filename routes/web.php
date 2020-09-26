@@ -2,7 +2,9 @@
 
 use App\Postcard;
 use App\PostcardSendingService;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +34,7 @@ Route::get('post/create' , 'PostController@create');
 Route::get('search', 'MovieController@index');
 Route::get('ajax-autocomplete-search', 'MovieController@selectSearch');
 
+//facades
 Route::get('postcards', function () {
 
     $postcardService = new PostcardSendingService('Morocco', 4,  6);
@@ -43,4 +46,12 @@ Route::get('/facades' , function() {
 
     Postcard::hello('facades', 'facades@aravel.coml');
 
+});
+
+//Macros
+Route::get('/macros' , function(){
+    // dd(Str::partNumber('123456789'));
+    dd(Str::prefix('123456789'));
+
+    return Response::errorJson();
 });

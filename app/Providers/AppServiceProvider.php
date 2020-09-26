@@ -7,10 +7,13 @@ use App\Billing\CreditPaymentGateway;
 use App\Billing\PaymentGatewayContract;
 use App\Channel;
 use App\Http\View\Composers\ChannelsComposer;
+use App\Mixins\StrMixins;
 use App\Post;
 use App\PostcardSendingService;
+use Illuminate\Routing\ResponseFactory;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -53,6 +56,21 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton('Postcard', function($app) {
             return new PostcardSendingService('Morocco', 4, 6);
+        });
+
+        //macros
+
+        // Str::macro('partNumber', function ($part){
+        //     return 'AB-' .substr($part, 0, 3) .'-' .substr($part, 3);
+        // });
+
+        Str::mixin(new StrMixins());
+
+        ResponseFactory::macro('errorJson', function($message = 'Default error message') {
+            return [
+                'message' => $message,
+                'error_code'=> 555,
+            ];
         });
     }
 }
