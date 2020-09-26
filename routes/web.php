@@ -25,3 +25,7 @@ Route::get('pay' , 'PayOrderController@store');
 // View Composer
 Route::get('channels' ,'ChannelController@index');
 Route::get('post/create' , 'PostController@create');
+
+//Select2 search
+Route::get('search', 'MovieController@index');
+Route::get('ajax-autocomplete-search', 'MovieController@selectSearch');
