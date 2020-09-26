@@ -1,5 +1,7 @@
 <?php
 
+use App\Postcard;
+use App\PostcardSendingService;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,3 +31,16 @@ Route::get('post/create' , 'PostController@create');
 //Select2 search
 Route::get('search', 'MovieController@index');
 Route::get('ajax-autocomplete-search', 'MovieController@selectSearch');
+
+Route::get('postcards', function () {
+
+    $postcardService = new PostcardSendingService('Morocco', 4,  6);
+
+    $postcardService->hello('Hello from Bahaeddine; We are learning facades', 'sihassi.bahaedddine@gmail.com');
+});
+
+Route::get('/facades' , function() {
+
+    Postcard::hello('facades', 'facades@aravel.coml');
+
+});
