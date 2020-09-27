@@ -55,3 +55,7 @@ Route::get('/macros' , function(){
 
     return Response::errorJson();
 });
+
+//Pipelines
+
+Route::get('/pipelines' , 'ArticleController@index');
